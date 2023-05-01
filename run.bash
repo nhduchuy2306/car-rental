@@ -1,1 +1,38 @@
-mvn spring-boot:run -DskipTests -Pdevelopment
+function startSpring(){
+    mvn spring-boot:run -DskipTests -Pdevelopment
+}
+
+function deploySpring(){
+    echo "pull all changes from git"
+    git pull origin main
+
+    echo "Build spring boot application base on staging yml"
+    mvn clean package -DskipTests -Pstag
+
+    echo "Deploy to staging server"
+    scp -r target happygear@20.2.64.67:~/happygear
+
+    echo "go to staging server and run docker-compose"
+    ssh happygear@20.2.64.67 "cd happygear && docker-compose up -d --build api-server && docker exec -it happygear_nginx_1 nginx -s reload"
+}
+
+function buildSpring(){
+    mvn clean package -DskipTests -Pdevelopment
+}
+
+function clearSpring(){
+    mvn clean
+}
+
+if [ $1 == "start" ]; then
+    startSpring
+elif [ $1 == "deploy" ]; then
+    deploySpring
+elif [ $1 == "build" ]; then
+    buildSpring
+elif [ $1 == "clear" ]; then
+    clearSpring
+else
+    echo "Please input correct command (start, deploy, build, clear)"
+    exit 1
+fi
