@@ -2,7 +2,7 @@ spring:
   application:
     name: @artifactId@
   profiles: 
-    active: @profileActive@
+    active: @profileActive@, environment
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,7 +10,6 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8InnoDBDialect
         format_sql: true
         show_sql: true
         use_sql_comments: true
@@ -24,3 +23,26 @@ server:
   port: 8080
   servlet:
     context-path: /@artifactId@
+
+# # Environment variables
+# # dev
+# DATABASE_HOST: localhost
+# DATABASE_PASSWORD: carrental
+# DATABASE_PORT: 3306
+# DATABASE_USERNAME: root
+# DATABASE_NAME: carrental
+
+# # staging
+# DATABASE_HOST_STAGING: mysql
+# DATABASE_PASSWORD_STAGING: carrental
+# DATABASE_PORT_STAGING: 3306
+# DATABASE_USERNAME_STAGING: root
+# DATABASE_NAME_STAGING: carrental
+
+# # Google Key
+# GOOGLE_CLIENT_KEY: 1234567890
+# GOOGLE_CLIENT_SECRET: 1234567890
+
+# # JWT token setup
+# JWT_SECRET: 1234567890
+# JWT_EXPIRATION: 86400000

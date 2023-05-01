@@ -1,0 +1,25 @@
+# spring:
+#   config:
+#     activate:
+#       on-profile: development
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/carrental
+#     username: root
+#     password: carrental
+#   flyway:
+#     enabled: false
+#     locations: classpath:db/migration/{vendor}
+#     baseline-on-migrate: true
+spring:
+  config:
+    activate:
+      on-profile: development
+    additional-location: classpath:/environment.yml
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  flyway:
+    enabled: false
+    locations: classpath:db/migration/{vendor}
+    baseline-on-migrate: true
