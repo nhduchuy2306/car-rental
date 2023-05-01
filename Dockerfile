@@ -6,7 +6,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN ./mvnw install -Pstaging -DskipTests
+RUN ./mvnw clean package -DskipTests -Pstaging
 
 FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp

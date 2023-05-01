@@ -1,8 +1,8 @@
 spring:
   application:
-    name: @project.artifactId@
+    name: @artifactId@
   profiles: 
-    active: @project.profileActive@
+    active: @profileActive@
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,4 +23,4 @@ springfox:
 server:
   port: 8080
   servlet:
-    context-path: /@project.artifactId@
+    context-path: /@artifactId@
