@@ -552,3 +552,17 @@
 2023-05-01 21:01:15.828 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/carrental'
 2023-05-01 21:01:15.832 [restartedMain] INFO  com.carrental.CarrentalApplication - Started CarrentalApplication in 0.293 seconds (process running for 117.063)
 2023-05-01 21:01:15.833 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2023-05-01 21:01:27.894 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/carrental] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-01 21:01:27.895 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-05-01 21:01:27.895 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2023-05-01 21:01:27.895 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2023-05-01 21:01:27.895 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2023-05-01 21:01:27.896 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4a4e0305
+2023-05-01 21:01:27.896 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7009b8c2
+2023-05-01 21:01:27.896 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-05-01 21:01:27.897 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2023-05-01 21:01:27.897 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/carrental/api/first/profile", parameters={}
+2023-05-01 21:01:27.897 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.carrental.controller.FirstController#getProfile()
+2023-05-01 21:01:27.898 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/html', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [text/plain, */*, application/json, application/*+json]
+2023-05-01 21:01:27.899 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["Hello from FirstController from port: development, environment"]
+2023-05-01 21:01:27.899 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
