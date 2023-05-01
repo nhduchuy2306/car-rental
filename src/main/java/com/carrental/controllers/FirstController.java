@@ -1,4 +1,4 @@
-package com.carrental.controller;
+package com.carrental.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,5 +15,10 @@ public class FirstController {
     @GetMapping("/profile")
     public String getProfile() {
         return "Hello from FirstController from port: " + profile + "";
+    }
+
+    @GetMapping("/hello")
+    public String getHello() {
+        return "Hello from FirstController";
     }
 }
