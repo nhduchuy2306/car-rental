@@ -12,9 +12,11 @@ import com.carrental.dtos.request.LoginRequestDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "bearerAuth")
 public class FirstController {
 
     @Value("${spring.profiles.active}")
@@ -34,6 +36,14 @@ public class FirstController {
     }
 
     @PostMapping("/profile")
+    @Operation(
+        description = "Create profile",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Success", ref = "Success"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", ref = "BadRequest"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", ref = "InternalServerError")
+        }
+    )
     public ResponseEntity<?> createProfile(
         @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Login Request", required = true, content = @io.swagger.v3.oas.annotations.media.Content(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = LoginRequestDto.class)))
         @RequestBody LoginRequestDto loginRequestDto
