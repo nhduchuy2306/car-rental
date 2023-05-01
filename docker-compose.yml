@@ -1,0 +1,26 @@
+version: '1.0'
+services:
+  db:
+    container_name: db
+    image: mysql
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: carrental
+      MYSQL_DATABASE: carrental
+    ports:
+      - "3306:3306"
+
+  webapi:
+    container_name: webapi
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+volumes:
+  db:
+  webapi:
