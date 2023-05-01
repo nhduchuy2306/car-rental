@@ -1,3 +1,10 @@
+function init(){
+    # copy application-environment.example.yml to application-environment.yml
+    cp application-environment.example.yml ./src/main/resources/application-environment.yml
+    # remove application-environment.yml from git
+    git rm --cached src/main/resources/application-environment.yml
+}
+
 function startSpring(){
     mvn spring-boot:run -DskipTests -Pdevelopment
 }
@@ -38,6 +45,8 @@ elif [ $1 == "clear" ]; then
     clearSpring
 elif [ $1 == "docker" ]; then
     dockerComposeUp
+elif [ $1 == "init" ]; then
+    init
 else
     echo "Please input correct command (start, deploy, build, clear)"
     exit 1
