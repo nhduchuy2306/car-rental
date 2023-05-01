@@ -1,0 +1,12 @@
+spring:
+  config:
+    profiles: 
+      active: development
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  flyway:
+    enabled: false
+    locations: classpath:db/migration/{vendor}
+    baseline-on-migrate: true

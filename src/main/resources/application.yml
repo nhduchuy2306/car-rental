@@ -1,2 +1,26 @@
+spring:
+  application:
+    name: @project.artifactId@
+  profiles: 
+    active: @project.profileActive@
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+
+springfox:
+  documentation:
+    swagger:
+      use-model-v3: false
+
 server:
   port: 8080
+  servlet:
+    context-path: /@project.artifactId@

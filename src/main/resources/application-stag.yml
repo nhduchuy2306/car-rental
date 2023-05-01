@@ -1,0 +1,12 @@
+spring:
+  config:
+    profiles: 
+      active: staging
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST_STAGING}:${DATABASE_PORT_STAGING}/${DATABASE_NAME_STAGING}
+    username: ${DATABASE_USERNAME_STAGING}
+    password: ${DATABASE_PASSWORD_STAGING}
+  flyway:
+    enabled: false
+    locations: classpath:db/migration/{vendor}
+    baseline-on-migrate: true
