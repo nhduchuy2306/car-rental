@@ -3,15 +3,17 @@
   <!-- logo spring boot -->
   <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zrUJwvgZ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bupbqc9fctvw4j7r14it.png">
   <!-- image of spring boot -->
-  <img src="https://img.shields.io/badge/Spring%20Boot-2.4.5-brightgreen">
+  <img src="https://img.shields.io/badge/Spring%20Boot-3.0.6-brightgreen">
   <!-- image of java -->
-  <img src="https://img.shields.io/badge/Java-11-red">
+  <img src="https://img.shields.io/badge/Java-17-red">
   <!-- image of maven -->
-  <img src="https://img.shields.io/badge/Maven-3.8.1-blue">
+  <img src="https://img.shields.io/badge/Maven-3.9.1-blue">
   <!-- image of docker -->
-  <img src="https://img.shields.io/badge/Docker-20.10.6-blue">
+  <img src="https://img.shields.io/badge/Docker-23.0.5-blue">
   <!-- image of docker-compose -->
-  <img src="https://img.shields.io/badge/Docker%20Compose-1.29.1-blue">
+  <img src="https://img.shields.io/badge/Docker%20Compose-2.17.3-blue">
+  <!-- image of docker-desktop -->
+  <img src="https://img.shields.io/badge/Docker%20Desktop-4.19.0-blue">
 </div>
 <h1 align="center">Car Rental</h1>
 <div align="center">
