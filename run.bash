@@ -24,6 +24,10 @@ function clearSpring(){
     mvn clean
 }
 
+function dockerComposeUp(){
+    docker-compose up -d --build webapi mysql
+}
+
 if [ $1 == "start" ]; then
     startSpring
 elif [ $1 == "deploy" ]; then
@@ -32,6 +36,8 @@ elif [ $1 == "build" ]; then
     buildSpring
 elif [ $1 == "clear" ]; then
     clearSpring
+elif [ $1 == "docker" ]; then
+    dockerComposeUp
 else
     echo "Please input correct command (start, deploy, build, clear)"
     exit 1
