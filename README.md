@@ -1,3 +1,23 @@
+<h1 align="center">Spring boot project</h1>
+<div id="badge" align="center">
+  <!-- logo spring boot -->
+  <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zrUJwvgZ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bupbqc9fctvw4j7r14it.png">
+  <!-- image of spring boot -->
+  <img src="https://img.shields.io/badge/Spring%20Boot-2.4.5-brightgreen">
+  <!-- image of java -->
+  <img src="https://img.shields.io/badge/Java-11-red">
+  <!-- image of maven -->
+  <img src="https://img.shields.io/badge/Maven-3.8.1-blue">
+  <!-- image of docker -->
+  <img src="https://img.shields.io/badge/Docker-20.10.6-blue">
+  <!-- image of docker-compose -->
+  <img src="https://img.shields.io/badge/Docker%20Compose-1.29.1-blue">
+</div>
+<h1 align="center">Car Rental</h1>
+<div align="center">
+  <img src="https://media0.giphy.com/media/26BRrcK4dXrxl817q/giphy.gif">
+</div>
+
 1. Create file environment.yml using this command:
 
 ```
