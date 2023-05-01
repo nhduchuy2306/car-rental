@@ -21,11 +21,11 @@
 1. Create file environment.yml using this command:
 
 ```
-cp environment.example.yml ./src/main/resources/environment.yml
+cp environment.example.yml ./src/main/resources/application-environment.yml
 ```
 
 ```
-git rm --cached src/main/resources/environment.yml
+git rm --cached src/main/resources/application-environment.yml
 ```
 
 ---

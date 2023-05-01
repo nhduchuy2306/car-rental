@@ -1,7 +1,7 @@
 spring:
   config:
-    profiles: 
-      active: staging
+    activate:
+      on-profile: staging
   datasource:
     url: jdbc:mysql://${DATABASE_HOST_STAGING}:${DATABASE_PORT_STAGING}/${DATABASE_NAME_STAGING}
     username: ${DATABASE_USERNAME_STAGING}
