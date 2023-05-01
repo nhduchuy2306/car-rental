@@ -21,7 +21,7 @@
 1. Create file environment.yml using this command:
 
 ```
-cp environment.example.yml ./src/main/resources/application-environment.yml
+cp application-environment.example.yml ./src/main/resources/application-environment.yml
 ```
 
 ```

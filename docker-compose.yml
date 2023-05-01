@@ -1,7 +1,7 @@
 version: '1.0'
 services:
-  db:
-    container_name: db
+  mysql:
+    container_name: mysql
     image: mysql
     volumes:
       - ./data:/var/lib/mysql
@@ -21,8 +21,16 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - mysql
     restart: unless-stopped
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+     - "8081:80"
 volumes:
-  db:
+  mysql:
   webapi:
+  nginx:
