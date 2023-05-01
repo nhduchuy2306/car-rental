@@ -1,4 +1,4 @@
-function init(){
+function initSpring(){
     # copy application-environment.example.yml to application-environment.yml
     cp application-environment.example.yml ./src/main/resources/application-environment.yml
     # remove application-environment.yml from git
@@ -14,17 +14,21 @@ function deploySpring(){
     git pull origin main
 
     echo "Build spring boot application base on staging yml"
-    mvn clean package -DskipTests -Pstag
+    mvn clean package -DskipTests -Pstaging
 
     echo "Deploy to staging server"
-    scp -r target happygear@20.2.64.67:~/happygear
+    scp -r target happygear@20.2.64.67:~/carrental
 
     echo "go to staging server and run docker-compose"
-    ssh happygear@20.2.64.67 "cd happygear && docker-compose up -d --build api-server && docker exec -it happygear_nginx_1 nginx -s reload"
+    ssh happygear@20.2.64.67 "cd carrental && docker-compose up -d --build webap && docker exec -it happygear_nginx_1 nginx -s reload"
 }
 
-function buildSpring(){
+function buildSpringInDevelopment(){
     mvn clean package -DskipTests -Pdevelopment
+}
+
+function buildSpringInStaging(){
+    mvn clean package -DskipTests -Pstaging
 }
 
 function clearSpring(){
@@ -35,19 +39,21 @@ function dockerComposeUp(){
     docker-compose up -d --build webapi mysql
 }
 
-if [ $1 == "start" ]; then
+if [ $1 == "init" ]; then
+    initSpring
+elif [ $1 == "start" ]; then
     startSpring
-elif [ $1 == "deploy" ]; then
-    deploySpring
-elif [ $1 == "build" ]; then
-    buildSpring
-elif [ $1 == "clear" ]; then
-    clearSpring
+elif [ $1 == "build-dev" ]; then
+    buildSpringInDevelopment
+elif [ $1 == "build-stag" ]; then
+    buildSpringInStaging
 elif [ $1 == "docker" ]; then
     dockerComposeUp
-elif [ $1 == "init" ]; then
-    init
+elif [ $1 == "deploy" ]; then
+    deploySpring
+elif [ $1 == "clear" ]; then
+    clearSpring
 else
-    echo "Please input correct command (start, deploy, build, clear)"
+    echo "Please input command (init, start, deploy, build-dev, build-stag, clear)"
     exit 1
 fi
