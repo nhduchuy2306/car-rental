@@ -22,32 +22,26 @@
 
 ```
 cp application-environment.example.yml ./src/main/resources/application-environment.yml
-```
 
-```
 git rm --cached src/main/resources/application-environment.yml
 ```
 
----
+***Note:*** If you have bash command, you can run bash script using this command: `sh run.bash init`
 
-2. Fill the environment.yml with your own configuration
+2. Do some task before starting project:
 
----
+- Make sure you have bash commandline installed on your machine if you want to run bash script.
+  - Fill the `application-environment.yml` in `src/main/resources` with your own configuration.
+  - Must have maven version 3.5.0 or later.
+  - Must have jdk verison 17 or later.
+  - Make sure you have docker and docker-compose installed on your machine.
 
-3. Start docker container using this command:
-
-```
-docker-compose up -d
-```
-
+3. Start docker container using this command: `docker-compose up -d`
 4. Run this project using this command make sure you using bash commandline:
 
-- if you have bash commandline, run this command:
-  `bash run.bash`
-- if you don't have bash commandline, run this command:
-  `mvn clean install && java -jar target/carrental-1.0.jar`
-- Or you can run this project using this command:
-  `mvn clean install && mvn spring-boot:run`
-- Or this command:
-  `mvn clean install && ./mvnw spring-boot:run`
-- Finally, you can run this project using your IDE
+- Using bash command line, choose one of the following commands:
+  - `sh run.bash start`
+  - `mvn clean install -Pdevelopment && java -jar target/carrental-1.0.jar`
+  - `mvn clean install -Pdevelopment && mvn spring-boot:run -Pdevelopment`
+  - `mvn clean install -Pdevelopment && ./mvnw spring-boot:run -Pdevelopment`
+  - Finally, you can run this project using your IDE

@@ -16,8 +16,6 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./webapi:/app
     ports:
       - "8080:8080"
     depends_on:
