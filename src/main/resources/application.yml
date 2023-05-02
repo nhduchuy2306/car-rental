@@ -6,6 +6,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      show-sql: true
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
@@ -13,16 +14,6 @@ spring:
         format_sql: true
         show_sql: true
         use_sql_comments: true
-
-springfox:
-  documentation:
-    swagger:
-      use-model-v3: false
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    use-root-path: true
 
 server:
   port: 8080
@@ -32,10 +23,3 @@ server:
 logging:
   level:
     org.springframework.web: DEBUG
-    org.hibernate: ERROR
-    org.hibernate.SQL: DEBUG
-  file:
-    name: @artifactId@.log
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
