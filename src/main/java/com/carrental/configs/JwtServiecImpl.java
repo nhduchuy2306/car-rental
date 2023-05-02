@@ -4,7 +4,6 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,51 +21,54 @@ public class JwtServiecImpl implements JwtService{
     @Value("${JWT_SECRET_KEY}")
     private String secretKey;
 
-    @Value("${JWT_EXPIRATION_TIME}")
-    private String expirationTime;
+    @Value("${JWT_EXPIRATION_TIME_ACCESS_TOKEN}")
+    private String expirationTimeForAccessToken;
+
+    @Value("${JWT_EXPIRATION_TIME_REFRESH_TOKEN}")
+    private String expirationTimeForRefreshToken;
 
     @Override
     public String extractUserEmail(String token) {
-        return extractClaim(token, Claims::getSubject);
+        var claims = extractAllClaims(token);
+        var userMap = claims.get("User", Map.class);
+        return userMap.get("email").toString();
     }
 
     @Override
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
+    public String generateAccessToken(UserDetails userDetails){
+        return generateTokenUtils(new HashMap<>(), userDetails, expirationTimeForAccessToken);
     }
 
     @Override
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
-    }
-
-    @Override
-    public String generateToken(
-        Map<String, Object> extraClaims,
-        UserDetails userDetails
-    ){
-        return Jwts.builder()
-            .setClaims(extraClaims)
-            .setSubject(userDetails.getUsername())
-            .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(expirationTime)))
-            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-            .compact();
+    public String generateRefreshToken(UserDetails userDetails) {
+        return generateTokenUtils(new HashMap<>(), userDetails, expirationTimeForRefreshToken);
     }
 
     @Override
     public Boolean isTokenValid(String token, UserDetails userDetails) {
-        final String userEmail = extractUserEmail(token);
+        String userEmail = extractUserEmail(token);
         return (userEmail.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-    
+
     private boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
+        var claims = extractAllClaims(token);
+        Date expiration = claims.getExpiration();
+        return expiration.before(new Date());
     }
 
-    private Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
+    private String generateTokenUtils(
+        Map<String, Object> extraClaims,
+        UserDetails userDetails,
+        String expirationTimeType
+    ){
+        extraClaims.put("User", userDetails);
+
+        return Jwts.builder()
+            .setClaims(extraClaims)
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(expirationTimeType)))
+            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+            .compact();
     }
 
     private Claims extractAllClaims(String token) {

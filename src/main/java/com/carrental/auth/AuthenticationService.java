@@ -30,9 +30,11 @@ public class AuthenticationService {
             .role(Role.USER)
             .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        var accessToken = jwtService.generateAccessToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.builder()
-            .token(jwtToken)
+            .token(accessToken)
+            .refreshToken(refreshToken)
             .build();
     }
 
@@ -45,9 +47,22 @@ public class AuthenticationService {
         );
         var user = userRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new RuntimeException("User not found"));
-        var jwtToken = jwtService.generateToken(user);
+        var accessToken = jwtService.generateAccessToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.builder()
-            .token(jwtToken)
+            .token(accessToken)
+            .refreshToken(refreshToken)
+            .build();
+    }
+
+    public AuthenticationResponse refresh(RefreshTokenRequest request) {
+        var email = jwtService.extractUserEmail(request.getRefreshToken());
+        var user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        var accessToken = jwtService.generateAccessToken(user);
+        return AuthenticationResponse.builder()
+            .token(accessToken)
+            .refreshToken(null)
             .build();
     }
     
