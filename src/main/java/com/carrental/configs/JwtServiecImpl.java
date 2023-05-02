@@ -33,7 +33,6 @@ public class JwtServiecImpl implements JwtService{
     @Override
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
-        System.out.println("===================Claims======================"+claims);
         return claimsResolver.apply(claims);
     }
 
@@ -79,7 +78,6 @@ public class JwtServiecImpl implements JwtService{
     }
 
     private Key getSignInKey() {
-        System.out.println("========================================="+secretKey);
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }

@@ -20,11 +20,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @Builder
+@Table(name="user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="user")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
