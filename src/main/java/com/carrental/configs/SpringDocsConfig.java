@@ -21,7 +21,7 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 @Configuration
 @OpenAPIDefinition(
     info = @Info(title = "Spring Docs", version = "1.0.0", description = "Spring Docs for Car Rental App"))
-@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "Bearer ")
+@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "Bearer")
 public class SpringDocsConfig {
     
     @Bean

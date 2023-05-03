@@ -45,10 +45,10 @@ public class AuthenticationService {
                 request.getPassword()
             )
         );
-        var user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new RuntimeException("User not found"));
-        var accessToken = jwtService.generateAccessToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.builder()
             .token(accessToken)
             .refreshToken(refreshToken)
@@ -56,9 +56,11 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse refresh(RefreshTokenRequest request) {
-        var email = jwtService.extractUserEmail(request.getRefreshToken());
-        var user = userRepository.findByEmail(email)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+        String email = jwtService.extractUserEmail(request.getRefreshToken());
+        User user = userRepository.findByEmail(email)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+        Boolean isTokenExpired = jwtService.isTokenValid(request.getRefreshToken(), user);
+        if(!isTokenExpired) throw new RuntimeException("Refresh token is expired, Must Login again!");
         var accessToken = jwtService.generateAccessToken(user);
         return AuthenticationResponse.builder()
             .token(accessToken)
