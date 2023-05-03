@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 
-import com.carrental.utils.ReadJsonFileToJsonObject;
+import com.carrental.utils.JsonUtils;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -27,7 +27,7 @@ public class SpringDocsConfig {
     @Bean
     public OpenAPI baseOpenAPI() throws IOException{
 
-        ReadJsonFileToJsonObject readJsonFileToJsonObject = new ReadJsonFileToJsonObject();
+        JsonUtils readJsonFileToJsonObject = new JsonUtils();
 
         ApiResponse successResponse = new ApiResponse().content(
             new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE,
