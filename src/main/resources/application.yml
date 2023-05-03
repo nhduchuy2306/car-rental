@@ -1,27 +1,22 @@
-spring:
-  application:
-    name: @artifactId@
-  profiles: 
-    active: @profileActive@, environment
-  jpa:
-    hibernate:
-      ddl-auto: update
-      show-sql: true
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-        use_sql_comments: true
+# spring:
+#   application:
+#     name: @artifactId@
+#   profiles: 
+#     active: @profileActive@, environment
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#       show-sql: true
+#       naming:
+#         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#     properties:
+#       hibernate:
+#         format_sql: true
+#         show_sql: true
+#         use_sql_comments: true
 
 server:
   port: 8080
-  error:
-  include-message: always
-  include-binding-errors: always
-  inclue-stacktrace: on_trace_param
-  include-exception: always
   servlet:
     context-path: /@artifactId@
 
