@@ -56,7 +56,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse refresh(RefreshTokenRequest request) {
-        String email = jwtService.extractUserEmail(request.getRefreshToken());
+        String email = null;
+        try {
+            email = jwtService.extractUserEmail(request.getRefreshToken());
+        } catch (Exception e) {
+            throw new RuntimeException("Refresh token is invalid");
+        }
         User user = userRepository.findByEmail(email)
         .orElseThrow(() -> new RuntimeException("User not found"));
         Boolean isTokenExpired = jwtService.isTokenValid(request.getRefreshToken(), user);

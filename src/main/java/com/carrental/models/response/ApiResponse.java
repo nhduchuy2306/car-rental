@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiResponse<T> {
-    private T results;
+public class ApiResponse {
+    private Object results;
     private Meta meta;
 }

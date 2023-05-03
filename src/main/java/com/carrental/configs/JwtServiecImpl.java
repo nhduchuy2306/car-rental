@@ -35,7 +35,7 @@ public class JwtServiecImpl implements JwtService{
     }
 
     @Override
-    public String generateAccessToken(UserDetails userDetails){
+    public String generateAccessToken(UserDetails userDetails) {
         return generateTokenUtils(new HashMap<>(), userDetails, expirationTimeForAccessToken);
     }
 
@@ -46,8 +46,12 @@ public class JwtServiecImpl implements JwtService{
 
     @Override
     public Boolean isTokenValid(String token, UserDetails userDetails) {
-        String userEmail = extractUserEmail(token);
-        return (userEmail.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        try {
+            String userEmail = extractUserEmail(token);
+            return (userEmail.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private boolean isTokenExpired(String token) {
@@ -71,7 +75,7 @@ public class JwtServiecImpl implements JwtService{
             .compact();
     }
 
-    private Claims extractAllClaims(String token) {
+    private Claims extractAllClaims(String token) throws SecurityException {
         return Jwts.parserBuilder()
             .setSigningKey(getSignInKey())
             .build()
