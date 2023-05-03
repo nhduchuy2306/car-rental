@@ -67,5 +67,4 @@ public class AuthenticationService {
             .refreshToken(null)
             .build();
     }
-    
 }
