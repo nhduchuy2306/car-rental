@@ -39,6 +39,10 @@ function dockerComposeUp(){
     docker-compose up -d --build webapi mysql
 }
 
+function deployToAzure(){
+    mvn azure-spring-apps:deploy
+}
+
 if [ $1 == "init" ]; then
     initSpring
 elif [ $1 == "start" ]; then
