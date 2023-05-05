@@ -17,11 +17,6 @@ spring:
 
 server:
   port: 8080
-  error:
-  include-message: always
-  include-binding-errors: always
-  inclue-stacktrace: on_trace_param
-  include-exception: always
   servlet:
     context-path: /@artifactId@
 
