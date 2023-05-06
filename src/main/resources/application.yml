@@ -9,3 +9,12 @@ momo:
   endPoint: https://test-payment.momo.vn/v2/gateway/api/create
   returnUrl: http://localhost:8081/api/payment/momo-info
   notifyUrl: http://localhost:8080/ETrans/MoMoNotify
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1033655643110-68r2v3tedbqdsa61r0pic7a2v35kmu58.apps.googleusercontent.com
+            client-secret: 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

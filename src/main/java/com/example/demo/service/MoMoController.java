@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/payment")
 @RequiredArgsConstructor
@@ -43,6 +45,22 @@ public class MoMoController {
             amount, orderInfo, orderType, 
             transId, resultCode, message, 
             payType, responseTime, extraData, signature);
+        log.info("res: {}", res);
+        log.info(MoMo.builder()
+                    .partnerCode(partnerCode)
+                    .orderId(orderId)
+                    .requestId(requestId)
+                    .amount(amount)
+                    .orderInfo(orderInfo)
+                    .orderType(orderType)
+                    .transId(transId)
+                    .resultCode(resultCode)
+                    .message(message)
+                    .payType(payType)
+                    .responseTime(responseTime)
+                    .extraData(extraData)
+                    .signature(signature)
+                    .build().toString());
         if(res.getStatus().equals("0")) {
             return ResponseEntity.status(HttpStatus.FOUND)
                         .location(URI.create("https://fullstackdeveloper.guru/2021/03/12/how-to-redirect-to-an-external-url-from-spring-boot-rest-controller"))
