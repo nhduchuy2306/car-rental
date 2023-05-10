@@ -1,5 +1,6 @@
 package com.carrental.auth;
 
+import com.carrental.entites.LoginType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,7 @@ public class AuthenticationService {
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(Role.USER)
+            .loginType(LoginType.NORMAL)
             .build();
         userRepository.save(user);
         var accessToken = jwtService.generateAccessToken(user);
@@ -70,6 +72,28 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
             .token(accessToken)
             .refreshToken(null)
+            .build();
+    }
+
+    public AuthenticationResponse loginGoogle(String email, String name, String hashCode) {
+        User user = userRepository.findByEmail(email)
+            .orElseGet(() -> {
+                var newUser = User.builder()
+                    .firstname(name)
+                    .lastname(name)
+                    .email(email)
+                    .password(passwordEncoder.encode(hashCode))
+                    .role(Role.USER)
+                    .loginType(LoginType.GOOGLE)
+                    .build();
+                userRepository.save(newUser);
+                return newUser;
+            });
+        var accessToken = jwtService.generateAccessToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
+        return AuthenticationResponse.builder()
+            .token(accessToken)
+            .refreshToken(refreshToken)
             .build();
     }
 }

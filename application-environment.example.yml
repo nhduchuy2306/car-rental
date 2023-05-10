@@ -13,10 +13,18 @@
 # DATABASE_NAME_STAGING: carrental
 
 # Google Key
-# GOOGLE_CLIENT_KEY: 1234567890
+# GOOGLE_CLIENT_ID: 1234567890
 # GOOGLE_CLIENT_SECRET: 1234567890
 
 # JWT token setup
 # JWT_SECRET_KEY: 1234567890453980539485793475
 # JWT_EXPIRATION_TIME_ACCESS_TOKEN: 86400000
 # JWT_EXPIRATION_TIME_REFRESH_TOKEN: 86400000
+
+#momo:
+#  partnerCode: MOMOI3J920220921
+#  accessKey: yzp3lsHbJJifAkNU
+#  secretKey: CJLOBZMb1CpjqpDl9bhA9zqnCTv2ThSY
+#  endPoint: https://test-payment.momo.vn/v2/gateway/api/create
+#  returnUrl: http://localhost:8081/api/payment/momo-info
+#  notifyUrl: http://localhost:8080/ETrans/MoMoNotify
