@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
     @GetMapping("/hello")
     public String sayHello(){
-        return "Hello World! Deploy successful!";
+        return "Nó redirect qua đó rồi nè!";
     }
     
     @GetMapping("/hello-2")
